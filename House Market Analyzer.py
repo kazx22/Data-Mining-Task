@@ -33,6 +33,24 @@ def roomCheck(hl):
     return totaLExisting, totalNonExisting
 
 
+def houseAnalysis(hl):
+    houselist = []
+
+    hc = houseCsm(hl)
+    rch = roomCheck(hl)
+
+    for i in range(len(hc)):
+        houseData = {
+            "id": i + 1,
+            "total": hc[0][i],
+            "cpsm": hc[1][i],
+            "empty": rch[0][i],
+        }
+        houselist.append(houseData)
+
+    return houselist
+
+
 houses = [
     {
         "id": 1,
@@ -82,3 +100,5 @@ if checkRoom == "Y":
     )
 else:
     pass
+
+print(houseAnalysis(houses))
