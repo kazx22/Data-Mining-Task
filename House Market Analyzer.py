@@ -22,7 +22,6 @@ def roomCheck(hl):
         for k, v in hl[i].items():
             if k != "Price":
                 if v == 0:
-                    print(k)
                     nonExisting.append(k)
                 else:
                     existing.append(k)
@@ -42,9 +41,9 @@ def houseAnalysis(hl):
     for i in range(len(hl)):
         houseData = {
             "Id": i + 1,
-            "Total": hc[0][i],
+            "Total Square Meters": hc[0][i],
             "CPSM": hc[1][i],
-            "EmptyRooms": rch[0][i],
+            "Empty Rooms": rch[0][i],
         }
         houseInfo.append(houseData)
 
@@ -195,27 +194,29 @@ houses = [
 ]
 
 houseCost = houseCsm(houses)
-print(houseCost)
-print(
-    f"First House Total Square Meter {houseCost[0][0]} Second House Total Square {houseCost[0][1]}"
-)
 
-checkCspm = input("Do You want to Check the CSPM ? (Y/N)")
-if checkCspm == "Y":
-    print(f"First House CPSM {houseCost[1][0]}  Second House CPSM {houseCost[1][1]}")
+
+for i in range(len(houses)):
+    print(f"Numebr {i+1} House Total Square Meter {houseCost[0][i]}")
+
+checkCpsm = input("Do You want to Check the CPSM ? (Y/N)")
+
+if checkCpsm == "Y":
+    for i in range(len(houses)):
+        print(f"Number {i+1} House CPSM {houseCost[1][i]}")
 else:
     pass
 
 rc = roomCheck(houses)
-print(rc)
-print(
-    f"First House NonExisting Rooms {rc[1][0]} Second House NonExisting Rooms {rc[1][1]}"
-)
+
+for i in range(len(houses)):
+    print(f"Number {i+1} NonExisting Rooms {rc[1][i]  or  0} ")
+
+
 checkRoom = input("Do You want to Check the Existing Room ? (Y/N)")
 if checkRoom == "Y":
-    print(
-        f"First House Existing Room {rc[0][0]}  Second House Existing Room {rc[0][1]}"
-    )
+    for i in range(len(houses)):
+        print(f"Number {i+1} House Existing Room {rc[0][i]}")
 else:
     pass
 
